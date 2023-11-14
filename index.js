@@ -92,13 +92,44 @@ var finances = [
 var totalMonths = 0;
 var netProfit = 0;
 
+var previousItem = 867884;
+var totalChanges = 0;
+var currentHighest = 0;
+var currentLowest = 0;
 
 // code for total months
 for (i = 0; i < finances.length; i++) {
   totalMonths += 1;
 };
 
+
+// code for total profits
 for (i = 0; i < finances.length; i++) {
   netProfit += finances[i][1];
-  console.log(netProfit)
 };
+
+// code for total changes and highest/lowest changes
+for (i = 0; i < finances.length; i++) {
+  totalChanges += (finances[i][1] - previousItem);
+  
+  if ((finances[i][1] - previousItem) > currentHighest) {
+    currentHighest = [finances[i][0], (finances[i][1] - previousItem)];
+  } else if ((finances[i][1] - previousItem) < currentLowest) {
+    currentLowest = [finances[i][0], (finances[i][1] - previousItem)];
+  };
+
+  previousItem = finances[i][1];
+
+};
+
+var averageChanges = (totalChanges / totalMonths);
+var averageChangesRounded = Math.round(averageChanges * 100) / 100
+
+// logs to console
+console.log('Financial Analysis');
+console.log('----------------')
+console.log('Total Months: ' + totalMonths);
+console.log('Total: $' + netProfit);
+console.log('Average change: ' + averageChangesRounded);
+console.log('Greatest Increase in Profits/Losses: ' + currentHighest);
+console.log('Greatest Decrease in Profits/Losses: ' + currentLowest);
