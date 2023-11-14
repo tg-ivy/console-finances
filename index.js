@@ -86,3 +86,19 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+
+//variables
+var totalMonths = 0;
+var netProfit = 0;
+
+
+// code for total months
+for (i = 0; i < finances.length; i++) {
+  totalMonths += 1;
+};
+
+for (i = 0; i < finances.length; i++) {
+  netProfit += finances[i][1];
+  console.log(netProfit)
+};
